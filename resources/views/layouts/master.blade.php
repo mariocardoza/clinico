@@ -17,11 +17,6 @@
   <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker3.min.css')}}">
-  <style>
-    .form-control{
-      text-transform:uppercase;
-    }
-  </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -78,7 +73,7 @@
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">TuneUp</span>
+      <span class="brand-text font-weight-light">Clínico</span>
     </a>
 
     <!-- Sidebar -->
