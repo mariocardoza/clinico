@@ -1,10 +1,9 @@
 <template>
-
     <div class="container-fluid">
         <div class="row">
           <!-- left column -->
           <div class="col-md-12">
-                <h4>Bienvenido al sistema de laboratorio clínico</h4>
+                <h4>User {{user_id}}</h4>
           </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -12,8 +11,15 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+         data (){
+          return {
+            user_id:null
+          }
+        },
+
+        mounted(){
+          this.user_id=this.$route.params.id;
         }
+
     }
 </script>

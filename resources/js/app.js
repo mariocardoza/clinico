@@ -6,6 +6,8 @@
 
 require('./bootstrap');
 require('admin-lte');
+
+import router from './router'
 window.Vue = require('vue');
 
 /**
@@ -18,8 +20,14 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+Vue.component('App', require('./components/App.vue').default);
 
+Vue.component('menu-component', require('./components/MenuComponent.vue').default);
 Vue.component('inicio-component', require('./components/InicioComponent.vue').default);
+Vue.component('user-component', require('./components/UsersComponent.vue').default);
+
+//error 404
+Vue.component('error-component', require('./components/ErrorComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,4 +37,6 @@ Vue.component('inicio-component', require('./components/InicioComponent.vue').de
 
 const app = new Vue({
     el: '#app',
-});
+    router,
+    //render: h => h(App)
+}).$mount("#app");
