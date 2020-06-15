@@ -124,10 +124,6 @@
     <!-- Main content -->
     <section id="app" class="content">
       @yield('content')
-      <!-- Default box -->
-      
-      <!-- /.card -->
-
     </section>
     <!-- /.content -->
   </div>
