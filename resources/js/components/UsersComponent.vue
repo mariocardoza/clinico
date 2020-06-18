@@ -1,4 +1,5 @@
 <template>
+  
 <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
@@ -6,7 +7,7 @@
       <!-- left column -->
       <div class="col-md-12">
         <!-- general form elements -->
-        <div class="card card-primary">
+        <div class="card card-info">
           <div class="card-header">
             <h3 class="card-title">Listado de usuarios</h3>
             
@@ -15,7 +16,9 @@
           <!-- form start -->
 
             <div class="card-body table-responsive">
-              <button class="btn btn-primary float-right" v-on:click.prevent="nuevo_usuario">Nuevo</button>
+              <button v-if="$can('create_user')" type="button" class="btn btn-info float-right" v-on:click.prevent="nuevo_usuario">
+                Nuevo
+              </button>
              
               <table class="table table-striped">
                 <thead>
@@ -37,9 +40,12 @@
                       <input v-if="editMode" type="text" class="form-control" v-model="user.email">
                       <span v-else>{{user.email}}</span></td>
                     <td>
-                      <button v-if="editMode" class="btn btn-success" v-on:click="update_user(index,user.id)"><i class="fas fa-spinner"></i></button>
-                      <button v-else class="btn btn-warning" v-on:click.prevent="edit_user"><i class="fas fa-edit"></i></button>
-                      <button class="btn btn-danger" v-on:click.prevent="borrar"><i class="fas fa-trash"></i></button>
+                      <div v-if="$can('edit_user')">
+                        <button v-if="editMode" class="btn btn-success" v-on:click="update_user(index,user.id)"><i class="fas fa-spinner"></i></button>
+                        <button class="btn btn-warning" v-on:click.prevent="edit_user"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-danger" v-on:click.prevent="borrar"><i class="fas fa-trash"></i></button>
+
+                      </div>
                     </td>
                   </tr>
                 </tbody>
@@ -60,13 +66,14 @@
       <!--/.col (right) -->
     </div>
     <!-- /.row -->
-  </div><!-- /.container-fluid -->
+</div><!-- /.container-fluid -->
 
   <!-- modales aqui -->
 
 </template>
 
 <script>
+
     export default {
       data(){
         return {
@@ -80,7 +87,7 @@
 
         methods:{
           nuevo_usuario(){
-            toastr.success("nuevo");
+            this.$router.push('users/create');
           },
 
           edit_user(){
@@ -99,6 +106,10 @@
                     this.editMode=false;
                     this.loadUsers();
                     toastr.success("Modificado con éxito");
+                })
+                .catch(function (error) {
+                  console.log(error);
+                  toastr.error("Ocurrió un error con el servidor");
                 });
           },
           loadUsers(){

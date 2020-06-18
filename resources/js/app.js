@@ -10,6 +10,11 @@ require('admin-lte');
 import router from './router'
 window.Vue = require('vue');
 
+import Permissions from './mixins/Permissions';
+Vue.mixin(Permissions);
+
+//window.$ = window.jQuery = require('jquery');
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -24,7 +29,9 @@ Vue.component('App', require('./components/App.vue').default);
 
 Vue.component('menu-component', require('./components/MenuComponent.vue').default);
 Vue.component('inicio-component', require('./components/InicioComponent.vue').default);
+//users
 Vue.component('user-component', require('./components/UsersComponent.vue').default);
+Vue.component('user-create-component', require('./components/UserCreateComponent.vue').default);
 
 //error 404
 Vue.component('error-component', require('./components/ErrorComponent.vue').default);

@@ -17,6 +17,17 @@
   <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker3.min.css')}}">
+  <script>
+      window.App = {
+          errors: {!! json_encode($errors->toArray()) !!},
+          user: {!! json_encode(auth()->user()) !!}
+      }
+      @auth
+        window.Permissions = {!! json_encode(Auth::user()->allPermissions, true) !!};
+      @else
+        window.Permissions = [];
+      @endauth
+  </script>
 </head>
 
 <body class="hold-transition sidebar-mini">

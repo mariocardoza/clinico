@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use Validator;
 
 class UsersController extends Controller
 {
@@ -27,7 +28,8 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validar($request->all())->validate();
+
     }
 
     /**
@@ -65,5 +67,18 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function validar(array $data)
+    {
+        $mensajes=array(
+          'email.required'=>'El tipo de cliente es obligatorio',
+          'name.required'=>'El nombre del cliente es obligatorio',
+
+      );
+      return Validator::make($data, [
+          'email'=>'required',
+          'name'=>'required',
+      ],$mensajes);
     }
 }
