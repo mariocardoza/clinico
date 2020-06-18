@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('auth/login');
 });
-
+ */
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -23,5 +23,6 @@ Route::get('/{any}', function(){
 	return view('spa');
 })->where('any','.*');
 
+Route::resource('unidades', 'UnidadesController');
 //frontend
 Route::apiResource('usuarios','UsersController');

@@ -34,6 +34,10 @@
             <router-link class="nav-link" to="/users"><i class="nav-icon fas fa-user"></i> Usuarios</router-link>
           </li>
 
+          <li class="nav-item has-treeview">
+            <router-link class="nav-link" to="/unidades"><i class="nav-icon fas fa-ruler-combined"></i> Unidades</router-link>
+          </li>
+
         </ul>
 
       </nav>

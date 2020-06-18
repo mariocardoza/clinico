@@ -25,6 +25,7 @@ Vue.component('App', require('./components/App.vue').default);
 Vue.component('menu-component', require('./components/MenuComponent.vue').default);
 Vue.component('inicio-component', require('./components/InicioComponent.vue').default);
 Vue.component('user-component', require('./components/UsersComponent.vue').default);
+Vue.component('unidades-component', require('./components/UnidadesComponent.vue').default);
 
 //error 404
 Vue.component('error-component', require('./components/ErrorComponent.vue').default);
@@ -38,5 +39,4 @@ Vue.component('error-component', require('./components/ErrorComponent.vue').defa
 const app = new Vue({
     el: '#app',
     router,
-    //render: h => h(App)
 }).$mount("#app");

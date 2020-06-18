@@ -7,9 +7,9 @@ import HomeComponent from './components/InicioComponent';
 import UsersComponent from './components/UsersComponent';
 import UserComponent from './components/UserComponent';
 import ErrorComponent from './components/ErrorComponent';
+import UnidadesComponent from './components/UnidadesComponent';
 
 const router = new VueRouter({
-	mode: 'history',
 	routes:[
 		{
 			path:'/home',
@@ -25,12 +25,23 @@ const router = new VueRouter({
 			path:'/users/:id',
 			name:'user_detail',
 			component:UserComponent
+        },
+        {
+			path:'/unidades',
+			name:'unidades',
+            component:UnidadesComponent,
+            props:true
 		},
 		{
             path: '*',
             component: ErrorComponent
         }
-	]
+    ],
+    linkExactActiveClass: 'active',
+    mode: 'history',
+    scrollBehavior(){
+        return {x:0, y:0}
+    }
 });
 
 export default router;
