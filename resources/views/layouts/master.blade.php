@@ -70,15 +70,15 @@
         </div>
       </li>
       <!-- Notifications Dropdown Menu -->
-  
-     
+
+
     </ul>
   </nav>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
 <div id="app">
-  
+
   <menu-component></menu-component>
 
   <!-- Content Wrapper. Contains page content -->
@@ -109,7 +109,7 @@
   </footer>
 
   <!-- Control Sidebar -->
-  
+
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
