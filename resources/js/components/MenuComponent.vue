@@ -17,7 +17,7 @@
           <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{this.logged}}</a>
+          <a href="#" class="d-block">{{this.usuario}}</a>
         </div>
       </div>
 
@@ -53,14 +53,13 @@
     export default {
       data(){
         return{
-          logged:'',
+          usuario:'',
         }
       },
         mounted() {
             console.log('Component menu mounted.');
-            console.log(App, App.errors, App.user);
-            this.logged=App.user.name;
-            console.log(this.logged);
+            console.log(App.persona);
+            this.usuario=App.persona.nombre;
         }
     }
 </script>

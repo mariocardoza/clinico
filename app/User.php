@@ -50,4 +50,9 @@ class User extends Authenticatable
         }
         return $permissions;
     }
+
+    public function persona()
+    {
+        return $this->belongsTo('App\Persona');
+    }
 }

@@ -20,6 +20,7 @@
   <script>
       window.App = {
           errors: {!! json_encode($errors->toArray()) !!},
+          persona: {!! json_encode(auth()->user()->persona) !!},
           user: {!! json_encode(auth()->user()) !!}
       }
       @auth

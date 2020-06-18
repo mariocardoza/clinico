@@ -31,11 +31,9 @@ Vue.component('menu-component', require('./components/MenuComponent.vue').defaul
 Vue.component('inicio-component', require('./components/InicioComponent.vue').default);
 //users
 Vue.component('user-component', require('./components/UsersComponent.vue').default);
-<<<<<<< HEAD
 Vue.component('user-create-component', require('./components/UserCreateComponent.vue').default);
-=======
+
 Vue.component('unidades-component', require('./components/UnidadesComponent.vue').default);
->>>>>>> d1943de6ce78004daeb6843111620bbe7d8f0c44
 
 //error 404
 Vue.component('error-component', require('./components/ErrorComponent.vue').default);

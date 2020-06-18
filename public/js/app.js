@@ -2040,14 +2040,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      logged: ''
+      usuario: ''
     };
   },
   mounted: function mounted() {
     console.log('Component menu mounted.');
-    console.log(App, App.errors, App.user);
-    this.logged = App.user.name;
-    console.log(this.logged);
+    console.log(App.persona);
+    this.usuario = App.persona.nombre;
   }
 });
 
@@ -2315,6 +2314,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2337,7 +2340,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var params = {
-        name: this.users[index].name,
+        username: this.users[index].username,
         email: this.users[index].email
       };
       axios.put("api/usuarios/".concat(id), params).then(function (response) {
@@ -2356,6 +2359,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('api/usuarios').then(function (response) {
         _this2.users = response.data;
+        console.log(response);
       });
     }
   }
@@ -38697,7 +38701,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "info" }, [
             _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
-              _vm._v(_vm._s(this.logged))
+              _vm._v(_vm._s(this.usuario))
             ])
           ])
         ]),
@@ -39509,29 +39513,33 @@ var render = function() {
                     _c("td", [_vm._v(_vm._s(index + 1))]),
                     _vm._v(" "),
                     _c("td", [
+                      _c("span", [_vm._v(_vm._s(user.persona.nombre))])
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
                       _vm.editMode
                         ? _c("input", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: user.name,
-                                expression: "user.name"
+                                value: user.username,
+                                expression: "user.username"
                               }
                             ],
                             staticClass: "form-control",
                             attrs: { type: "text" },
-                            domProps: { value: user.name },
+                            domProps: { value: user.username },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.$set(user, "name", $event.target.value)
+                                _vm.$set(user, "username", $event.target.value)
                               }
                             }
                           })
-                        : _c("span", [_vm._v(_vm._s(user.name))])
+                        : _c("span", [_vm._v(_vm._s(user.username))])
                     ]),
                     _vm._v(" "),
                     _c("td", [
@@ -39637,6 +39645,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("N°")]),
         _vm._v(" "),
         _c("th", [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Username")]),
         _vm._v(" "),
         _c("th", [_vm._v("Correo")]),
         _vm._v(" "),
@@ -54866,16 +54876,11 @@ Vue.mixin(_mixins_Permissions__WEBPACK_IMPORTED_MODULE_1__["default"]); //window
 
 Vue.component('App', __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue")["default"]);
 Vue.component('menu-component', __webpack_require__(/*! ./components/MenuComponent.vue */ "./resources/js/components/MenuComponent.vue")["default"]);
-<<<<<<< HEAD
 Vue.component('inicio-component', __webpack_require__(/*! ./components/InicioComponent.vue */ "./resources/js/components/InicioComponent.vue")["default"]); //users
 
 Vue.component('user-component', __webpack_require__(/*! ./components/UsersComponent.vue */ "./resources/js/components/UsersComponent.vue")["default"]);
-Vue.component('user-create-component', __webpack_require__(/*! ./components/UserCreateComponent.vue */ "./resources/js/components/UserCreateComponent.vue")["default"]); //error 404
-=======
-Vue.component('inicio-component', __webpack_require__(/*! ./components/InicioComponent.vue */ "./resources/js/components/InicioComponent.vue")["default"]);
-Vue.component('user-component', __webpack_require__(/*! ./components/UsersComponent.vue */ "./resources/js/components/UsersComponent.vue")["default"]);
+Vue.component('user-create-component', __webpack_require__(/*! ./components/UserCreateComponent.vue */ "./resources/js/components/UserCreateComponent.vue")["default"]);
 Vue.component('unidades-component', __webpack_require__(/*! ./components/UnidadesComponent.vue */ "./resources/js/components/UnidadesComponent.vue")["default"]); //error 404
->>>>>>> d1943de6ce78004daeb6843111620bbe7d8f0c44
 
 Vue.component('error-component', __webpack_require__(/*! ./components/ErrorComponent.vue */ "./resources/js/components/ErrorComponent.vue")["default"]);
 /**
@@ -55539,13 +55544,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_InicioComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/InicioComponent */ "./resources/js/components/InicioComponent.vue");
 /* harmony import */ var _components_UsersComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/UsersComponent */ "./resources/js/components/UsersComponent.vue");
 /* harmony import */ var _components_UserComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/UserComponent */ "./resources/js/components/UserComponent.vue");
-<<<<<<< HEAD
 /* harmony import */ var _components_UserCreateComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/UserCreateComponent */ "./resources/js/components/UserCreateComponent.vue");
 /* harmony import */ var _components_ErrorComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/ErrorComponent */ "./resources/js/components/ErrorComponent.vue");
-=======
-/* harmony import */ var _components_ErrorComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/ErrorComponent */ "./resources/js/components/ErrorComponent.vue");
-/* harmony import */ var _components_UnidadesComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/UnidadesComponent */ "./resources/js/components/UnidadesComponent.vue");
->>>>>>> d1943de6ce78004daeb6843111620bbe7d8f0c44
+/* harmony import */ var _components_UnidadesComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/UnidadesComponent */ "./resources/js/components/UnidadesComponent.vue");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
@@ -55577,15 +55578,11 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/unidades',
     name: 'unidades',
-    component: _components_UnidadesComponent__WEBPACK_IMPORTED_MODULE_6__["default"],
+    component: _components_UnidadesComponent__WEBPACK_IMPORTED_MODULE_7__["default"],
     props: true
   }, {
     path: '*',
-<<<<<<< HEAD
     component: _components_ErrorComponent__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }]
-=======
-    component: _components_ErrorComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
   }],
   linkExactActiveClass: 'active',
   mode: 'history',
@@ -55595,7 +55592,6 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       y: 0
     };
   }
->>>>>>> d1943de6ce78004daeb6843111620bbe7d8f0c44
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
 

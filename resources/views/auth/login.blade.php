@@ -27,10 +27,10 @@
       <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="input-group mb-3">
-          <input  id="email" type="email" name="email" class="form-control" placeholder="Correo electónico">
+          <input  id="username" type="text" name="username" class="form-control" placeholder="Nombre de usuario">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>

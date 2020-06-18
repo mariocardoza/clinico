@@ -5,6 +5,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Persona;
 
 
 class PermisosSeeder extends Seeder
@@ -24,14 +25,21 @@ class PermisosSeeder extends Seeder
     	array_push($permissions_array,Permission::create(['name'=>'create']));
     	array_push($permissions_array,Permission::create(['name'=>'edit']));
     	array_push($permissions_array,Permission::create(['name'=>'delete']));
-    	array_push($permissions_array,Permission::create(['name'=>'view']));
+        array_push($permissions_array,Permission::create(['name'=>'view']));
+    	array_push($permissions_array,Permission::create(['name'=>'menu_admin']));
         $superAdmin=Role::create(['name'=>'super_admin']);
         $superAdmin->syncPermissions($permissions_array);
 
+
+        //super usuario
+        $persona=Persona::create([
+            'nombre'=>'SuperAdmin',
+        ]);
         $superAdminUser=User::create([
-        	'name'=>'Admin',
         	'email'=>'mariokr.rocker@gmail.com',
-        	'password'=>Hash::make('admin')
+        	'password'=>Hash::make('admin'),
+            'persona_id'=>$persona->id,
+            'username'=>'admin'
         ]);
         $superAdminUser->assignRole('super_admin');
 

@@ -25,6 +25,7 @@
                   <tr>
                     <th>N°</th>
                     <th>Nombre</th>
+                    <th>Username</th>
                     <th>Correo</th>
                     <th></th>
                   </tr>
@@ -33,8 +34,11 @@
                   <tr v-for="(user,index) in users">
                     <td>{{index+1}}</td>
                     <td>
-                      <input v-if="editMode" type="text" class="form-control" v-model="user.name">
-                      <span v-else>{{user.name}}</span>
+                      <span>{{user.persona.nombre}}</span>
+                    </td>
+                    <td>
+                      <input v-if="editMode" type="text" class="form-control" v-model="user.username">
+                      <span v-else>{{user.username}}</span></td>
                     </td>
                     <td>
                       <input v-if="editMode" type="text" class="form-control" v-model="user.email">
@@ -98,7 +102,7 @@
           },
           update_user(index,id){
             let params={
-                    name:this.users[index].name,
+                    username:this.users[index].username,
                     email:this.users[index].email,
                 };
                 axios.put(`api/usuarios/${id}`,params)
@@ -116,6 +120,7 @@
             axios.get('api/usuarios')
             .then((response)=>{
                 this.users=response.data
+                console.log(response);
             });
           }
         }
