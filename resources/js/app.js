@@ -32,6 +32,7 @@ Vue.component('inicio-component', require('./components/InicioComponent.vue').de
 //users
 Vue.component('user-component', require('./components/UsersComponent.vue').default);
 Vue.component('user-create-component', require('./components/UserCreateComponent.vue').default);
+Vue.component('personas-component', require('./components/PersonaComponent.vue').default);
 
 Vue.component('unidades-component', require('./components/UnidadesComponent.vue').default);
 

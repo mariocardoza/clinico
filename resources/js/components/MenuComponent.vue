@@ -35,6 +35,10 @@
           </li>
 
           <li class="nav-item has-treeview">
+            <router-link class="nav-link" to="/personas"><i class="nav-icon fas fa-user"></i> Personas</router-link>
+          </li>
+
+          <li class="nav-item has-treeview">
             <router-link class="nav-link" to="/unidades"><i class="nav-icon fas fa-ruler-combined"></i> Unidades</router-link>
           </li>
 
