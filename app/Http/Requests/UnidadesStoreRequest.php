@@ -24,7 +24,14 @@ class UnidadesStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre'  => 'equired|unique'
+            'nombre'  => 'required|unique'
         ];
     }
+    public function messages()
+{
+    return [
+        'nombre.required' => 'Se requiere un nombre',
+        'nombre.unique' => 'Ya existe',
+    ];
+}
 }

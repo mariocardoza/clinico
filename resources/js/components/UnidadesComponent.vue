@@ -17,13 +17,24 @@
                     <div class="form-row">
                     <div class="col">
                         <div v-if="nuevo">
-                            <input type="text" placeholder="Ingrese nombre de unidad" class="form-control" v-model="nombre" autofocus>
+                            Nombre: <input type="text" placeholder="Ingrese nombre de unidad" class="form-control" v-model="nombre" autofocus>
+                        </div>
+                        <div v-if="nuevo">
+                                    <ul v-if="errores.length" class="list-group">
+                                        <li class="list-group-item list-group-item-danger">Por favor, corrija los siguientes errores:</li>
+                                        <li class="list-group-item" v-for="error in errores">{{ error }}</li>
+                                    </ul>
+                            </div>
+                    </div>
+                     <div class="col">
+                        <div v-if="nuevo">
+                            Abreviatura: <input type="text" placeholder="Ingrese abreviatura de unidad" class="form-control" v-model="abreviatura" autofocus>
                         </div>
                     </div>
-                    <div class="col-md-auto" v-if="nuevo">
+                    <div class="col-md-auto my-auto" v-if="nuevo">
                         <div v-if="nuevo">
                             <button type="submit" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Guardar"><i class="fas fa-check-circle"></i></button>
-                            <button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Cancelar" @click="nuevo=!nuevo,nombre=''"><i class="fas fa-times-circle"></i></button>
+                            <button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Cancelar" @click="nuevo=!nuevo,nombre='',abreviatura='',errores=[]"><i class="fas fa-times-circle"></i></button>
                         </div>
                     </div>
                     <div class="col-md-auto">
@@ -33,11 +44,13 @@
                     </div>
                 </div>
                 </form>
+                <hr v-if="nuevo">
               <table class="table table-striped">
                 <thead>
                   <tr>
                     <th>N°</th>
                     <th>Nombre</th>
+                    <th>Abreviatura</th>
                     <th>Opciones</th>
                   </tr>
                 </thead>
@@ -47,6 +60,11 @@
                     <td>
                         <input v-if="actualizar" type="text" class="form-control" v-model="unidad.nombre">
                         <span v-else>{{unidad.nombre}}</span>
+                    </td>
+                    <td>
+                        <input v-if="actualizar" type="text" class="form-control" v-model="unidad.abreviatura">
+                        <span v-else-if="!unidad.abreviatura"><strong>No asignada</strong></span>
+                        <span v-else>{{unidad.abreviatura}}</span>
                     </td>
                     <td>
                         <button v-if="actualizar" class="btn btn-success" v-on:click="editar(index,unidad.id)"><i class="fas fa-check-circle"></i></button>
@@ -75,6 +93,8 @@
         return {
           unidades:[],
           nombre:'',
+          abreviatura:'',
+          errores:[],
           nuevo:false,
           actualizar:false,
         }
@@ -84,15 +104,27 @@
         },
         methods: {
             guardar: function () {
-                this.nuevo=false;
-                axios.post('api/unidades/',{ nombre:this.nombre})
-                .then((response)=>{
-                    toastr.success("Guardado");
-                    this.ver();
-                    this.nombre='';
-                }).catch(e => {
-                    console.log("Error:"+e);
-                });
+                this.errores = [];
+                if(!this.nombre){
+                    this.errores.push('El nombre es obligatorio.');
+                }else{
+                    axios.post('api/unidades/',{ nombre:this.nombre,abreviatura:this.abreviatura})
+                    .then((response)=>{
+                        toastr.success("Guardado");
+                        this.ver();
+                        this.nombre='';
+                        this.abreviatura='';
+                        this.errores = [];
+                        this.nuevo=false;
+                    }).catch(e => {
+                        let esto=this;
+                        $.each(e.response.data.errors, function(key, value) {
+                            esto.errores.push(value);
+                            });
+                        this.nombre='';
+                        this.abreviatura='';
+                    });
+                }
             },
             ver: function (){
                 axios.get('api/unidades')
@@ -105,6 +137,7 @@
             editar: function(index,id){
                 let datos={
                     nombre:this.unidades[index].nombre,
+                    abreviatura:this.unidades[index].abreviatura,
                 };
                 axios.put('api/unidades/'+id,datos)
                 .then((response)=>{
@@ -114,10 +147,41 @@
                 });
             },
             borrar: function(id){
-                axios.delete('api/unidades/'+id).then(response => {
-                    toastr.success("Eliminado");
-                    this.ver();
-                });
+                this.$swal.fire({
+                    title: '¿Está seguro de borrar?',
+                    text: "¡Ya no estará disponible!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, borrar',
+                    cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                    if (result.value) {
+                       axios.delete('api/unidades/'+id)
+                        .then(response => {
+                            this.$swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Eliminado',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            this.ver();
+                        }).catch(error => {
+                            console.log(error);
+                        });
+
+                    }else{
+                        this.$swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Cancelado',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                    }
+                    });
             }
         }
     }
