@@ -4,9 +4,10 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Persona;
+use Spatie\Permission\Models\Permission; 
 
-class PersonaController extends Controller
+
+class PermisosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,7 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        $persona=Persona::where('nombre','!=','SuperAdmin')->get();
-        return $persona;
+        return Permission::paginate(5);
     }
 
     /**

@@ -26,6 +26,7 @@
     "dependencies": {
         "admin-lte": "^3.0.5",
         "chosen-js": "^1.8.7",
+        "vue-paginate": "^3.6.0",
         "vue-router": "^3.3.2",
         "vue-sweetalert2": "^3.0.5"
     }

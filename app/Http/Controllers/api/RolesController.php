@@ -4,9 +4,11 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Persona;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission; 
+use Validator;
 
-class PersonaController extends Controller
+class RolesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,9 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        $persona=Persona::where('nombre','!=','SuperAdmin')->get();
-        return $persona;
+        $roles=Role::with('permissions')->where('name','!=','super_admin')->get();
+        $permisos=Permission::all();
+        return array($roles,$permisos);
     }
 
     /**
@@ -27,7 +30,11 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $permisos=$request->permissions;
+        
+        $newRole=Role::create(['name'=>$request->name]);
+        $newRole->givePermissionTo($permisos);
+        return $newRole;
     }
 
     /**

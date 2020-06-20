@@ -35,6 +35,10 @@
           </li>
 
           <li class="nav-item has-treeview">
+            <router-link class="nav-link" to="/roles"><i class="nav-icon fas fa-user"></i> Roles</router-link>
+          </li>
+
+          <li class="nav-item has-treeview">
             <router-link class="nav-link" to="/personas"><i class="nav-icon fas fa-user"></i> Personas</router-link>
           </li>
 

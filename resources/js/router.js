@@ -9,6 +9,8 @@ import UsersComponent from './components/UsersComponent';
 import UserComponent from './components/UserComponent';
 import UserCreateComponent from './components/UserCreateComponent';
 import PersonasComponent from './components/PersonaComponent';
+import RolesComponent from './components/RoleComponent';
+import PermisosComponent from './components/PermisosComponent';
 
 //componente de error 404
 import ErrorComponent from './components/ErrorComponent';
@@ -25,6 +27,16 @@ const router = new VueRouter({
 			path:'/users',
 			name:'users',
 			component:UsersComponent
+		},
+		{
+			path:'/roles',
+			name:'roles',
+			component:RolesComponent
+		},
+		{
+			path:'/permisos',
+			name:'permisos',
+			component:PermisosComponent
 		},
 		{
 			path:'/personas',
