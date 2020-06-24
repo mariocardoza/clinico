@@ -15,6 +15,7 @@ import PermisosComponent from './components/PermisosComponent';
 //componente de error 404
 import ErrorComponent from './components/ErrorComponent';
 import UnidadesComponent from './components/UnidadesComponent';
+import ParametrosComponent from './components/ParametrosComponent';
 
 const router = new VueRouter({
 	routes:[
@@ -57,6 +58,12 @@ const router = new VueRouter({
 			path:'/unidades',
 			name:'unidades',
             component:UnidadesComponent,
+            props:true
+        },
+        {
+			path:'/parametros',
+			name:'parametros',
+            component:ParametrosComponent,
             props:true
 		},
 		{
