@@ -26,6 +26,7 @@
                     <th>N°</th>
                     <th>Nombre</th>
                     <th>Username</th>
+                    <th>Rol</th>
                     <th>Correo</th>
                     <th></th>
                   </tr>
@@ -39,6 +40,9 @@
                     <td>
                       <input v-if="editMode" type="text" class="form-control" v-model="user.username">
                       <span v-else>{{user.username}}</span></td>
+                    </td>
+                    <td>
+                      <span>{{user.roles[0].name}}</span>
                     </td>
                     <td>
                       <input v-if="editMode" type="text" class="form-control" v-model="user.email">
@@ -120,7 +124,7 @@
             axios.get('api/usuarios')
             .then((response)=>{
                 this.users=response.data
-                console.log(response);
+                console.log(response.data);
             });
           }
         }

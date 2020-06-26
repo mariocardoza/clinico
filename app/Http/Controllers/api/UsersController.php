@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use Validator;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -16,7 +17,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users=User::with('persona')->get();
+        $users=User::with('persona','roles')->get();
         return $users;
     }
 
@@ -28,8 +29,13 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validar($request->all())->validate();
-
+        $this->validator($request->all())->validate();
+        return User::create([
+            'persona_id' => $request['persona_id'],
+            'email' => $request['email'],
+            'username'=>$request['username'],
+            'password' => Hash::make($request['password']),
+        ]);
     }
 
     /**
@@ -80,5 +86,15 @@ class UsersController extends Controller
           'email'=>'required',
           'name'=>'required',
       ],$mensajes);
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'username' => ['required', 'string', 'max:255','unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'persona_id' => ['required','unique:users'],
+        ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Persona;
+use Validator;
 
 class PersonaController extends Controller
 {
@@ -27,7 +28,13 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validar($request->all())->validate();
+        try{
+            $p=Persona::create($request->all());
+            return array(1);
+        }catch(Exception $e){
+            return array(-1,"error",$e->getMessage());
+        }
     }
 
     /**
@@ -62,5 +69,20 @@ class PersonaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function validar(array $data)
+    {
+        $mensajes=array(
+            'nombre.required'=>'El nombre es obligatorio',
+            'dui.required'=>'El dui es obligatorio',
+      );
+      return Validator::make($data, [
+          'nombre'=>'required',
+          'dui'=>'required|min:10|unique:personas',
+          'nit'=>'required|min:13|unique:personas',
+          'direccion'=>'required',
+
+      ],$mensajes);
     }
 }

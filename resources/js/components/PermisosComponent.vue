@@ -21,6 +21,9 @@
                                 <label for="">Nombre</label>
                                 <input type="text" placeholder="Ingrese nombre del permiso" class="form-control" v-model="name" autofocus>
                             </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
                         </div>
                     </div>
                      
@@ -117,10 +120,14 @@
                         toastr.success("Guardado");
                         this.name='';
                         this.nuevo=false;
+                        this.cargar_permisos();
                     }).catch(e => {
-                        
-                        
-                    });
+                    let esto=this;
+                      $.each(e.response.data.errors, function(key, value) {
+                        toastr.error(value);
+                      });
+                      
+                  });
             },
             cancelar(){
                 this.nuevo=false;

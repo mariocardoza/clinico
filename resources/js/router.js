@@ -9,6 +9,7 @@ import UsersComponent from './components/UsersComponent';
 import UserComponent from './components/UserComponent';
 import UserCreateComponent from './components/UserCreateComponent';
 import PersonasComponent from './components/PersonaComponent';
+import CreatePersonaComponent from './components/CreatePersonaComponent';
 import RolesComponent from './components/RoleComponent';
 import PermisosComponent from './components/PermisosComponent';
 
@@ -42,6 +43,11 @@ const router = new VueRouter({
 			path:'/personas',
 			name:'personas',
 			component:PersonasComponent
+		},
+		{
+			path:'/personas/create',
+			name:'persona_create',
+			component:CreatePersonaComponent
 		},
 		{
 			path:'/users/create',

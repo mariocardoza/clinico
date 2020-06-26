@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator;
 use Spatie\Permission\Models\Permission; 
 
 
@@ -27,7 +28,9 @@ class PermisosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validar($request->all())->validate();
+
+        return Permission::create(['name'=>$request->name]);
     }
 
     /**
@@ -62,5 +65,17 @@ class PermisosController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function validar(array $data)
+    {
+        $mensajes=array(
+            'name.required'=>'El nombre es obligatorio',
+            'name.unique'=>'El elemento ya está en uso',
+      );
+      return Validator::make($data, [
+          'name'=>'required|unique:permissions',
+
+      ],$mensajes);
     }
 }

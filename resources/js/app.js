@@ -8,15 +8,18 @@ require('./bootstrap');
 require('admin-lte');
 
 import router from './router'
-window.Vue = require('vue');
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import VuePaginate from 'vue-paginate';
+import VueMask from 'v-mask';
 
 import Permissions from './mixins/Permissions';
+window.Vue = require('vue');
+
 Vue.mixin(Permissions);
 Vue.use(VueSweetalert2);
 Vue.use(VuePaginate);
+Vue.use(VueMask);
 
 //window.$ = window.jQuery = require('jquery');
 
@@ -38,6 +41,7 @@ Vue.component('inicio-component', require('./components/InicioComponent.vue').de
 Vue.component('user-component', require('./components/UsersComponent.vue').default);
 Vue.component('user-create-component', require('./components/UserCreateComponent.vue').default);
 Vue.component('personas-component', require('./components/PersonaComponent.vue').default);
+Vue.component('personacreate-component', require('./components/CreatePersonaComponent.vue').default);
 Vue.component('roles-component', require('./components/RoleComponent.vue').default);
 Vue.component('permisos-component', require('./components/PermisosComponent.vue').default);
 

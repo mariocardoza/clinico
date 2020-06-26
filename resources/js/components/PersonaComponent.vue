@@ -16,11 +16,11 @@
           <!-- form start -->
 
             <div class="card-body table-responsive">
-              <button v-if="$can('create')" type="button" class="btn btn-info float-right" v-on:click.prevent="nueva_persona">
+              <button v-if="$can('create_user')" type="button" class="btn btn-info float-right" v-on:click.prevent="nueva_persona">
                 Nuevo
               </button>
              
-              <table class="table table-striped">
+              <table  class="table table-striped">
                 <thead>
                   <tr>
                     <th>N°</th>
