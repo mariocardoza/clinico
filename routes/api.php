@@ -22,3 +22,4 @@ Route::apiResource('permisos', 'api\PermisosController');
 Route::apiResource('usuarios', 'api\UsersController');
 Route::apiResource('unidades', 'api\UnidadesController');
 Route::apiResource('personas', 'api\PersonaController');
+Route::apiResource('parametros', 'api\ParametrosController');

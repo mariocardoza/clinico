@@ -46,6 +46,10 @@
             <router-link class="nav-link" to="/unidades"><i class="nav-icon fas fa-ruler-combined"></i> Unidades</router-link>
           </li>
 
+          <li class="nav-item has-treeview">
+            <router-link class="nav-link" to="/parametros"><i class="nav-icon fas fa-vials"></i> Parametros</router-link>
+          </li>
+
         </ul>
 
       </nav>
